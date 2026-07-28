@@ -63,28 +63,21 @@ python -m http.server 8801 --directory "C:\Users\user\Desktop\急診教學"
 然後開 <http://localhost:8801>。
 （用 `file://` 直接打開也能看，只是 PWA 安裝與離線功能不會啟用。）
 
-## 部署到 GitHub Pages
+## 上線網址與更新方式
 
-桌面根目錄本身是「急診醫師排班」的 repo，本專案**要另外開一個獨立 repo**，
-不要 commit 進根目錄那個 repo（根目錄的 `.gitignore` 已經預設忽略本資料夾）。
+**線上網址：<https://leo005741010-byte.github.io/er-education/>**
+（repo：`leo005741010-byte/er-education`，GitHub Pages 由 `main` 分支根目錄發佈）
 
-```bash
-cd "C:\Users\user\Desktop\急診教學"
-git init -b main
-git add .
-git commit -m "天晟急診教學：教材、題庫、快查、PWA"
-gh repo create er-education --public --source=. --push
-```
-
-推上去後到 GitHub → Settings → Pages，Source 選 `main` / `root`，
-網址會是 `https://leo005741010-byte.github.io/er-education/`。
-
-之後改教材，重複：
+改完 `data/` 裡的教材或題目後，**雙擊 `更新急診教學網站.bat`** 就會自動
+commit + push，約 1 分鐘後線上生效。或手動：
 
 ```bash
 cd "C:\Users\user\Desktop\急診教學"
 git add . ; git commit -m "更新教材" ; git push
 ```
+
+> 這是獨立的 repo，與桌面根目錄的「急診醫師排班」repo 無關；
+> 根目錄的 `.gitignore` 已預設忽略本資料夾，不會互相干擾。
 
 > 改完內容如果手機上還看到舊版，把 `sw.js` 最上面的 `er-edu-v1` 版本號 +1 再推一次，
 > 就會強制清掉舊快取。
